@@ -1,15 +1,17 @@
+package Tasks;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Task {
+public abstract class Task {
     private int idGenerator;
     private String title;
-    private TaskRepeatability type;
+    private Type type;
     private int id;
     private LocalDateTime dateTime;
     private String description;
 
-    public Task(int idGenerator, String title, TaskRepeatability type, int id, LocalDateTime dateTime, String description) {
+    public Task(int idGenerator, String title, Type type, int id, LocalDateTime dateTime, String description) {
         this.idGenerator = idGenerator;
         this.title = title;
         this.type = type;
@@ -34,11 +36,11 @@ public class Task {
         this.title = title;
     }
 
-    public TaskRepeatability getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(TaskRepeatability type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
