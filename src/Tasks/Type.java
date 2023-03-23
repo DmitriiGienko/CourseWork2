@@ -7,4 +7,5 @@ public enum Type {
 
     Type(String s) {
     }
+
 }
