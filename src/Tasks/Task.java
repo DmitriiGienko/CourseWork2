@@ -3,39 +3,23 @@ package Tasks;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Task {
-    private int id;
+
+public abstract class Task {
+    private final int id = (int) (Math.random() * 10000 + 1);
     private String title;
     private Type type; //личная или рабочая
-//    private int id;
-    private ListOfTaskOptions taskDateOptions; // как часто повторяется
     private LocalDateTime dateTime;
     private String description;
 
-    public Task(int id, String title, Type type, ListOfTaskOptions taskDateOptions,
-                LocalDateTime dateTime, String description) {
-        this.id = id;
+    public Task(int id, String title, Type type, LocalDateTime dateTime, String description) {
         this.title = title;
         this.type = type;
-        this.taskDateOptions = taskDateOptions;
         this.dateTime = dateTime;
         this.description = description;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public ListOfTaskOptions getTaskDateOptions() {
-        return taskDateOptions;
-    }
-
-    public void setTaskDateOptions(ListOfTaskOptions taskDateOptions) {
-        this.taskDateOptions = taskDateOptions;
     }
 
     public String getTitle() {
@@ -53,14 +37,6 @@ public class Task {
     public void setType(Type type) {
         this.type = type;
     }
-
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
 
     public LocalDateTime getDateTime() {
         return dateTime;
@@ -83,23 +59,22 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && Objects.equals(title, task.title) && type == task.type && taskDateOptions == task.taskDateOptions && Objects.equals(dateTime, task.dateTime) && Objects.equals(description, task.description);
+        return id == task.id && Objects.equals(title, task.title) && type == task.type && Objects.equals(dateTime, task.dateTime) && Objects.equals(description, task.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, type, taskDateOptions, dateTime, description);
+        return Objects.hash(id, title, type, dateTime, description);
     }
 
     @Override
     public String toString() {
-        return "Task{" +
-                "idGenerator=" + id +
-                ", title='" + title + '\'' +
-                ", type=" + type +
-                ", taskDateOptions=" + taskDateOptions +
-                ", dateTime=" + dateTime +
-                ", description='" + description + '\'' +
-                '}';
+        return "Задача " +
+                "id: " + id +
+                ", заголовок: " + title +
+                ", тип: " + type +
+                ", дата и время выполнения: " + dateTime +
+                ", описание: " + description;
     }
 }
+
