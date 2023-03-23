@@ -1,6 +1,8 @@
 package Tasks;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Objects;
 
 
@@ -8,13 +10,12 @@ public abstract class Task {
     private final int id = (int) (Math.random() * 10000 + 1);
     private String title;
     private Type type; //личная или рабочая
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTime = LocalDateTime.now();
     private String description;
 
-    public Task(int id, String title, Type type, LocalDateTime dateTime, String description) {
+    public Task(String title, Type type, String description) {
         this.title = title;
         this.type = type;
-        this.dateTime = dateTime;
         this.description = description;
     }
 
@@ -38,8 +39,8 @@ public abstract class Task {
         this.type = type;
     }
 
-    public LocalDateTime getDateTime() {
-        return dateTime;
+    public String getDateTime() {
+        return dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm"));
     }
 
     public void setDateTime(LocalDateTime dateTime) {
@@ -53,6 +54,8 @@ public abstract class Task {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public abstract boolean appearsIn();
 
     @Override
     public boolean equals(Object o) {
@@ -72,7 +75,7 @@ public abstract class Task {
         return "Задача " +
                 "id: " + id +
                 ", заголовок: " + title +
-                ", тип: " + type +
+                ", тип: " + type.printType() +
                 ", дата и время выполнения: " + dateTime +
                 ", описание: " + description;
     }
