@@ -34,7 +34,7 @@ public class OneTimeTask extends Task {
     }
 
     @Override
-    public String getDateTime() {
+    public LocalDateTime getDateTime() {
         return super.getDateTime();
     }
 
@@ -56,6 +56,13 @@ public class OneTimeTask extends Task {
     @Override
     public boolean appearsIn() {
         return false;
+    }
+
+    @Override
+    public void getNextDate(Task task) {
+//        System.out.println("Следующее время и дата выполнения задачи " + getTitle()
+//                + " " + localDateTime.plusMonths(1));
+        System.out.println("Задача одноразовая");
     }
 
     @Override

@@ -7,16 +7,19 @@ import java.util.Objects;
 
 
 public abstract class Task {
-    private final int id = (int) (Math.random() * 10000 + 1);
+    private final int id;
     private String title;
     private Type type; //личная или рабочая
     private LocalDateTime dateTime = LocalDateTime.now();
     private String description;
+    private static int count = 1;
 
     public Task(String title, Type type, String description) {
         this.title = title;
         this.type = type;
         this.description = description;
+        this.id = count;
+        count++;
     }
 
     public int getId() {
@@ -39,8 +42,8 @@ public abstract class Task {
         this.type = type;
     }
 
-    public String getDateTime() {
-        return dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm"));
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     public void setDateTime(LocalDateTime dateTime) {
@@ -56,6 +59,8 @@ public abstract class Task {
     }
 
     public abstract boolean appearsIn();
+
+    public abstract void getNextDate(Task task);
 
     @Override
     public boolean equals(Object o) {
@@ -76,7 +81,7 @@ public abstract class Task {
                 "id: " + id +
                 ", заголовок: " + title +
                 ", тип: " + type.printType() +
-                ", дата и время выполнения: " + dateTime +
+                ", дата и время выполнения: " + dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")) +
                 ", описание: " + description;
     }
 }

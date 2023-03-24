@@ -1,6 +1,8 @@
 package Tasks;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DailyTask extends Task {
 
@@ -34,7 +36,7 @@ public class DailyTask extends Task {
     }
 
     @Override
-    public String getDateTime() {
+    public LocalDateTime getDateTime() {
         return super.getDateTime();
     }
 
@@ -56,6 +58,12 @@ public class DailyTask extends Task {
     @Override
     public boolean appearsIn() {
         return true;
+    }
+
+    @Override
+    public void getNextDate(Task task) {
+        System.out.println("Следующее время и дата выполнения задачи " + getTitle()
+                + " " + getDateTime().plusDays(1).format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")));
     }
 
     @Override
