@@ -54,9 +54,10 @@ public class YearlyTask extends Task {
     }
 
     @Override
-    public boolean appearsIn() {
-        return true;
+    public boolean appearsIn(LocalDateTime dateTime) {
+        return getDateTime().getDayOfYear() == dateTime.getDayOfYear();
     }
+
     @Override
     public void getNextDate(Task task) {
         System.out.println("Следующее время и дата выполнения задачи " + getTitle()

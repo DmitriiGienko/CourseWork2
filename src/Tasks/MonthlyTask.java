@@ -54,8 +54,8 @@ public class MonthlyTask extends Task {
     }
 
     @Override
-    public boolean appearsIn() {
-        return true;
+    public boolean appearsIn(LocalDateTime dateTime) {
+        return getDateTime().getDayOfMonth() == dateTime.getDayOfMonth();
     }
 
     @Override

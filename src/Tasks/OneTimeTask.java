@@ -1,5 +1,7 @@
 package Tasks;
 
+import Exceptions.RepeatabilityTypeException;
+
 import java.time.LocalDateTime;
 
 public class OneTimeTask extends Task {
@@ -54,15 +56,13 @@ public class OneTimeTask extends Task {
     }
 
     @Override
-    public boolean appearsIn() {
+    public boolean appearsIn(LocalDateTime dateTime) {
         return false;
     }
 
     @Override
-    public void getNextDate(Task task) {
-//        System.out.println("Следующее время и дата выполнения задачи " + getTitle()
-//                + " " + localDateTime.plusMonths(1));
-        System.out.println("Задача одноразовая");
+    public void getNextDate(Task task) throws RepeatabilityTypeException {
+        throw new RepeatabilityTypeException("Задача однократная! повторов нет!");
     }
 
     @Override

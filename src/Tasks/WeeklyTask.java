@@ -54,9 +54,10 @@ public class WeeklyTask extends Task {
     }
 
     @Override
-    public boolean appearsIn() {
-        return true;
+    public boolean appearsIn(LocalDateTime dateTime) {
+        return getDateTime().getDayOfWeek() == dateTime.getDayOfWeek();
     }
+
     @Override
     public void getNextDate(Task task) {
         System.out.println("Следующяя дата и время выполнения задачи " + getTitle()

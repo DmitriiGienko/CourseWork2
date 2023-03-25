@@ -1,8 +1,9 @@
 package Tasks;
 
+import Exceptions.RepeatabilityTypeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Objects;
 
 
@@ -12,14 +13,14 @@ public abstract class Task {
     private Type type; //личная или рабочая
     private LocalDateTime dateTime = LocalDateTime.now();
     private String description;
-    private static int count = 1;
+    private static int idGenerator = 1;
 
     public Task(String title, Type type, String description) {
         this.title = title;
         this.type = type;
         this.description = description;
-        this.id = count;
-        count++;
+        this.id = idGenerator;
+        idGenerator++;
     }
 
     public int getId() {
@@ -58,9 +59,9 @@ public abstract class Task {
         this.description = description;
     }
 
-    public abstract boolean appearsIn();
+    public abstract boolean appearsIn(LocalDateTime dateTime);
 
-    public abstract void getNextDate(Task task);
+    public abstract void getNextDate(Task task) throws RepeatabilityTypeException;
 
     @Override
     public boolean equals(Object o) {

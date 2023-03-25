@@ -1,6 +1,5 @@
 package Tasks;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -56,7 +55,7 @@ public class DailyTask extends Task {
     }
 
     @Override
-    public boolean appearsIn() {
+    public boolean appearsIn(LocalDateTime dateTime) {
         return true;
     }
 
