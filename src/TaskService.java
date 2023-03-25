@@ -70,5 +70,6 @@ public class TaskService {
             System.out.println(task.getDateTime().format(DateTimeFormatter.ofPattern("hh:mm")) + "  " +
                     task.getDescription());
         }
+        System.out.println("Всего задач - " + taskHashSet.size());
     }
 }
