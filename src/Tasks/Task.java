@@ -1,5 +1,6 @@
 package Tasks;
 
+import Exceptions.IncorrectArgumentException;
 import Exceptions.RepeatabilityTypeException;
 
 import java.time.LocalDateTime;
@@ -15,10 +16,23 @@ public abstract class Task {
     private String description;
     private static int idGenerator = 1;
 
-    public Task(String title, Type type, String description) {
-        this.title = title;
-        this.type = type;
-        this.description = description;
+    public Task(String title, Type type, String description) throws IncorrectArgumentException {
+
+        if (title.isEmpty() || title.isBlank() || title == null) {
+            throw new IncorrectArgumentException(" \"заголовок\" ");
+        } else {
+            this.title = title;
+        }
+        if (type.getClass().equals(Type.class)) {
+            this.type = type;
+        } else {
+            throw new IncorrectArgumentException(" \"тип задачи\" ");
+        }
+        if (description.isEmpty() || description.isBlank()) {
+            throw new IncorrectArgumentException(" \"описание\" ");
+        } else {
+            this.description = description;
+        }
         this.id = idGenerator;
         idGenerator++;
     }
@@ -31,16 +45,24 @@ public abstract class Task {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String title) throws IncorrectArgumentException {
+        if (title.isEmpty() || title.isBlank() || title == null) {
+            throw new IncorrectArgumentException(" \"заголовок\" ");
+        } else {
+            this.title = title;
+        }
     }
 
     public Type getType() {
         return type;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(Type type) throws IncorrectArgumentException {
+        if (type.getClass().equals(Type.class)) {
+            this.type = type;
+        } else {
+            throw new IncorrectArgumentException(" \"тип задачи\" ");
+        }
     }
 
     public LocalDateTime getDateTime() {
@@ -55,8 +77,12 @@ public abstract class Task {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String description) throws IncorrectArgumentException {
+        if (description.isEmpty() || getDescription().isBlank() || description == null) {
+            throw new IncorrectArgumentException(" \"описание\" ");
+        } else {
+            this.description = description;
+        }
     }
 
     public abstract boolean appearsIn(LocalDateTime dateTime);

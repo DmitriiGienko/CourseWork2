@@ -1,11 +1,13 @@
 package Tasks;
 
+import Exceptions.IncorrectArgumentException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DailyTask extends Task {
 
-    public DailyTask(String title, Type type, String description) {
+    public DailyTask(String title, Type type, String description) throws IncorrectArgumentException {
         super(title, type, description);
     }
 
@@ -20,7 +22,7 @@ public class DailyTask extends Task {
     }
 
     @Override
-    public void setTitle(String title) {
+    public void setTitle(String title) throws IncorrectArgumentException {
         super.setTitle(title);
     }
 
@@ -30,7 +32,7 @@ public class DailyTask extends Task {
     }
 
     @Override
-    public void setType(Type type) {
+    public void setType(Type type) throws IncorrectArgumentException {
         super.setType(type);
     }
 
@@ -50,7 +52,7 @@ public class DailyTask extends Task {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(String description) throws IncorrectArgumentException {
         super.setDescription(description);
     }
 

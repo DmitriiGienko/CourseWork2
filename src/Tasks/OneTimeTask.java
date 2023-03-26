@@ -1,13 +1,14 @@
 package Tasks;
 
+import Exceptions.IncorrectArgumentException;
 import Exceptions.RepeatabilityTypeException;
 
 import java.time.LocalDateTime;
 
 public class OneTimeTask extends Task {
 
-    public OneTimeTask(String title, Type type, String description) {
-        super(title, type,  description);
+    public OneTimeTask(String title, Type type, String description) throws IncorrectArgumentException {
+        super(title, type, description);
     }
 
     @Override
@@ -21,7 +22,7 @@ public class OneTimeTask extends Task {
     }
 
     @Override
-    public void setTitle(String title) {
+    public void setTitle(String title) throws IncorrectArgumentException {
         super.setTitle(title);
     }
 
@@ -31,7 +32,7 @@ public class OneTimeTask extends Task {
     }
 
     @Override
-    public void setType(Type type) {
+    public void setType(Type type) throws IncorrectArgumentException {
         super.setType(type);
     }
 
@@ -51,7 +52,7 @@ public class OneTimeTask extends Task {
     }
 
     @Override
-    public void setDescription(String description) {
+    public void setDescription(String description) throws IncorrectArgumentException {
         super.setDescription(description);
     }
 
