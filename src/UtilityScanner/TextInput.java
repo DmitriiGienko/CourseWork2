@@ -1,12 +1,8 @@
 package UtilityScanner;
 
 
-import java.util.Scanner;
-
 public class TextInput {
 
-    // сканнер для всех
-    public static Scanner scanner = new Scanner(System.in);
 
     // печать разделителя
     public static void printSeparate() {

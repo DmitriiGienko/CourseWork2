@@ -5,13 +5,10 @@ import Tasks.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 import static UtilityScanner.TextInput.*;
 
 public class Main {
-
-    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         task1();  // курсовая без сканнера
@@ -19,6 +16,7 @@ public class Main {
     }
 
     public static void task1() {
+
         OneTimeTask task1 = null;
         try {
             task1 = new OneTimeTask("врач", Type.PERSONAL, "запись к зубному");
@@ -165,7 +163,6 @@ public class Main {
         printSeparate();
 
         taskService.printTasks();
-
 
     }
 
