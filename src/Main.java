@@ -3,19 +3,22 @@ import Exceptions.TaskNotFoundException;
 import Tasks.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import static UtilityScanner.TextInput.*;
 
 public class Main {
 
     public static void main(String[] args) {
         task1();  // курсовая без сканнера
+        task2(); // Задача на функциональное программирование
 
     }
 
     public static void task1() {
+
+        System.out.println("----- Задача №1 -----\n");
+
 
         OneTimeTask task1 = null;
         try {
@@ -166,5 +169,43 @@ public class Main {
 
     }
 
+    public static void task2() {
+
+        System.out.println("\n ----- Задача №2 -----\n");
+
+        String text = "yourapp the quick brown fox jumps over the lazy dog";
+
+        Map<String, List<String>> map = Arrays.stream(text.split("\\s+"))
+                .collect(Collectors.groupingBy(
+                        String::valueOf,
+                        Collectors.toList()
+                ));
+
+
+        Map<String, List<String>> sortedMap = map.entrySet().stream()
+                .sorted(Comparator.comparingInt(a -> -a.getValue().size()))
+
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (a, b) -> a,
+                        LinkedHashMap::new
+                ));
+
+        System.out.printf("В тексте %d слов\nТоп 10:\n", sortedMap.size());
+        int i = 0; // счетчик не больше 10 слов, если в тексте больше
+        for (Map.Entry<String, List<String>> volume : sortedMap.entrySet()) {
+            if (i == 10) {
+                return;
+            }
+            System.out.println(volume.getValue().size() + " - " + volume.getKey());
+            i++;
+        }
+    }
+
+    // печать разделителя
+    public static void printSeparate() {
+        System.out.println("\n<===================================================>\n");
+    }
 
 }
